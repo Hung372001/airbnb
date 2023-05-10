@@ -10,7 +10,7 @@ interface ModalProps {
     onSubmit: () => void;
     title?: string;
     body?: React.ReactElement;
-    footer: React.ReactElement;
+    footer?: React.ReactElement;
     actionLabel: string;
     disable?: boolean;
     secondaryAction?: () => void;
@@ -32,10 +32,11 @@ const Modals: React.FC<ModalProps> = (
         actionLabel
     }
 ) => {
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(isOpen);
     useEffect(() => {
-        setShowModal(isOpen)
-    }, [isOpen])
+        setShowModal(isOpen);
+    }, [isOpen]);
+
     const handleClose = useCallback(() => {
         if (disable) {
             return
